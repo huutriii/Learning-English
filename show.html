@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        input,
+        button {
+            margin-bottom: 10px;
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Danh sách từ vựng</h2>
+
+    <label for="searchInput">Tìm kiếm theo chữ cái đầu tiên của từ đầu:</label>
+    <input type="text" id="searchInput" placeholder="Nhập một chữ cái... (A-Z)" maxlength="1">
+    <button id="resetButton">Làm mới</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Từ</th>
+                <th>Phiên âm</th>
+                <th>Nghĩa</th>
+            </tr>
+        </thead>
+        <tbody id="vocaTable"></tbody>
+    </table>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const vocabList = [
+                ["Artificial brain implant", "/ˌɑː.tɪˈfɪʃl breɪn ɪmˈplænt/", "Cấy ghép não nhân tạo"],
+                ["Artificial intelligence", "/ˌɑː.tɪˈfɪʃl ɪnˈtel.ɪ.dʒəns/", "Trí tuệ nhân tạo"],
+                ["Barcode", "/ˈbɑːkəʊd/", "Mã vạch"],
+                ["Blockchain", "/ˈblɒktʃeɪn/", "Chuỗi khối"],
+                ["Catch up with", "/kætʃ ʌp wɪð/", "Bắt kịp với"],
+                ["Cloud computing", "/ˈklaʊd kəmˈpjuː.tɪŋ/", "Điện toán đám mây"],
+                ["Computer built into clothing", "/kəmˈpjuː.tər bɪlt ˈɪntuː ˈkləʊðɪŋ/", "Quần áo thông minh"],
+                ["Convergence", "/kənˈvɜːdʒəns/", "Sự hội tụ"],
+                ["Direct links between brain and computer", "/daɪˈrekt lɪŋks bɪˈtwiːn breɪn ənd kəmˈpjuː.tər/", "Kết nối trực tiếp giữa não người và máy tính"],
+                ["Electronic humans", "/ɪˌlekˈtrɒnɪk ˈhjuː.mənz/", "Người điện tử"],
+                ["EVA (Electronic Virtual Assistant)", "/ɪˌlekˈtrɒnɪk ˈvɜː.tʃu.əl əˈsɪstənt/", "Trợ lý ảo điện tử"],
+                ["Firefighting robot", "/ˈfaɪəfaɪtɪŋ ˈrəʊbɒt/", "Robot cứu hỏa"],
+                ["Game development", "/ɡeɪm dɪˈvɛləpmənt/", "Phát triển game"],
+                ["Humanoid", "/ˈhjuːmənɔɪd/", "Giống hệt con người"],
+                ["Hydraulic chair for virtual reality games", "/haɪˈdrɔːlɪk tʃeə(r) fə ˈvɜːtʃuəl rɪˈælɪti geɪmz/", "Ghế thủy lực cho các trò chơi thực tế ảo"],
+                ["Imagine", "/ɪˈmædʒɪn/", "Tưởng tượng"],
+                ["Imitate", "/ˈɪmɪteɪt/", "Bắt chước"],
+                ["Impact", "/ɪmˈpækt/", "Tác động, ảnh hưởng"],
+                ["Influence on", "/ˈɪnfluəns ɒn/", "Ảnh hưởng"],
+                ["Intranets dominate over Internet", "/ˈɪntrəˌnɛts ˈdɒmɪneɪt ˈəʊvə ˈɪntərnɛt/", "Mạng nội bộ chiếm ưu thế"],
+                ["Mobile application development", "/ˈməʊbaɪl ˌæplɪˈkeɪʃən dɪˈvɛləpmənt/", "Phát triển ứng dụng di động"],
+                ["Outstrip", "/ˌaʊtˈstrɪp/", "Vượt xa"],
+                ["Personal wearable health monitor", "/ˈpɜːsənl ˈweərəbl hɛlθ ˈmɒnɪtər/", "Thiết bị theo dõi sức khỏe cá nhân"],
+                ["Radio Frequency Identification", "/ˈreɪdiəʊ ‘friːkwənsi aɪˌdentɪfɪˈkeɪʃn/", "Nhận dạng qua tần số vô tuyến"],
+                ["Radio-frequency tag", "/ˈreɪdiəʊ ˈfriːkwənsi tæɡ/", "Thẻ nhận dạng qua tần số vô tuyến"],
+                ["Revolutionize", "/ˌrevəˈluːʃənaɪz/", "Cách mạng hóa"],
+                ["Robotic pets", "/rəʊˈbɒtɪk pɛts/", "Thú cưng robot"],
+                ["Robotic devices within blood vessels", "/rəʊˈbɒtɪk dɪˈvaɪsiz wɪˈðɪn blʌd ˈveslz/", "Thiết bị robot bơi trong mạch máu"],
+                ["Surveillance", "/sɜːˈveɪləns/", "Giám sát"],
+                ["Tackle with", "/ˈtækl wɪð/", "Giải quyết, khắc phục, xử trí"],
+                ["Terabit per second on optical fibres over distance", "/ˈtɛrəbɪt pər ˈsɛkənd ɒn ˈɒptɪkl ˈfaɪbəz ˈəʊvə ˈdɪstəns/", "Tốc độ terabit/giây giới hạn trên cáp quang"],
+            ];
+
+            function sortVocabList(list) {
+                return list.sort((a, b) => {
+                    const firstWordA = a[0].split(" ")[0].toLowerCase();
+                    const firstWordB = b[0].split(" ")[0].toLowerCase();
+
+                    if (firstWordA !== firstWordB) {
+                        return firstWordA.localeCompare(firstWordB);
+                    }
+
+                    return a[0].length - b[0].length;
+                });
+            }
+
+            function displayVocabList(list) {
+                const tableBody = document.getElementById("vocaTable");
+                tableBody.innerHTML = "";
+
+                list.forEach(([word, phonetic, meaning]) => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `<td>${word}</td><td>${phonetic}</td><td>${meaning}</td>`;
+                    tableBody.appendChild(row);
+                });
+            }
+
+            const sortedVocabList = sortVocabList(vocabList);
+            displayVocabList(sortedVocabList);
+
+            document.getElementById("searchInput").addEventListener("input", function () {
+                const searchChar = this.value.trim().toLowerCase();
+
+                if (searchChar === "") {
+                    displayVocabList(sortedVocabList);
+                } else {
+                    const filteredList = sortedVocabList.filter(([word]) =>
+                        word.toLowerCase().split(" ").some(w => w.startsWith(searchChar))
+                    );
+                    displayVocabList(filteredList);
+                }
+            });
+
+            document.getElementById("resetButton").addEventListener("click", function () {
+                document.getElementById("searchInput").value = "";
+                displayVocabList(sortedVocabList);
+            });
+        });
+    </script>
+</body>
+
+</html>
