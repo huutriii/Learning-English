@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vocabulary Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .quiz-container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .question-header {
+            margin-bottom: 20px;
+        }
+
+        .question-number {
+            color: #444;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .question-title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .word {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            background-color: #f0f0f0;
+        }
+
+        .option-number {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .selected {
+            background-color: #e3f2fd;
+            border-color: #2196f3;
+        }
+
+        .correct {
+            background-color: #c8e6c9;
+            border-color: #4caf50;
+        }
+
+        .incorrect {
+            background-color: #ffebee;
+            border-color: #f44336;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="quiz-container">
+        <div class="question-header">
+            <h2 class="question-title">Nhìn từ chọn nghĩa:</h2>
+        </div>
+
+        <div class="word">
+            <span id="question-word"></span>
+            <span id="pronunciation" style="color: #666; font-size: 24px;"></span>
+        </div>
+
+        <div class="options" id="options-container">
+            <!-- Các đáp án sẽ được tạo động ở đây -->
+        </div>
+    </div>
+
+    <script>
+        const vocabList = [
+            ["accounting software", "/əˈkaʊntɪŋ ˈsɒf(t)wɛː/", "phần mềm kế toán"],
+            ["Adobe Reader", "/əˈdoʊbi ˈriːdər/", "phần mềm đọc file pdf"],
+            ["bioinformatics", "/ˌbaɪ.oʊˌɪnfərˈmætɪks/", "việc sử dụng tin học để phân tích dữ liệu sinh học"],
+            ["Corel Draw", "/kəˈrɛl drɔː/", "phần mềm biên tập đồ họa vector"],
+            ["Cost analysis", "/kɒst əˈnæləsɪs/", "phân tích chi phí"],
+            ["Data management", "/ˈdeɪtə ˈmænɪdʒmənt/", "việc quản lý dữ liệu"],
+            ["Desktop publishing (DTP)", "/ˈdɛsktɒp ˈpʌblɪʃɪŋ/", "kỹ thuật chế bản điện tử"],
+            ["Desktop publishing software", "/ˈdɛsktɒp ˈpʌblɪʃɪŋ ˈsɒf(t)wɛː/", "phần mềm chế bản điện tử"],
+            ["Digital assistant", "/ˈdɪdʒɪtəl əˈsɪstənt/", "thiết bị hỗ trợ kỹ thuật số"],
+            ["Dream Weaver", "/driːm ˈwiːvər/", "phần mềm soạn thảo, xây dựng trang web"],
+            ["editor", "/ˈɛdɪtər/", "trình biên soạn"],
+            ["Enterprise software", "/ˈɛntərˌpraɪz ˈsɒf(t)wɛː/", "phần mềm điều hành doanh nghiệp"],
+            ["Graphics program", "/ˈɡræfɪks ˈproʊɡræm/", "phần mềm đồ họa, chương trình đồ họa"],
+            ["household app", "/ˈhaʊshoʊld æp/", "ứng dụng dành cho gia đình"],
+            ["image editing software", "/ˈɪmɪdʒ ˈɛdɪtɪŋ ˈsɒf(t)wɛː/", "phần mềm chỉnh sửa ảnh"],
+            ["mobile apps", "/ˈmoʊbəl æps/", "ứng dụng di động"],
+            ["Office suite (Word, Excel, PPT)", "/ˈɒfɪs swiːt/", "bộ ứng dụng văn phòng"],
+            ["Payroll", "/ˈpeɪrɔːl/", "bảng lương"],
+            ["Primitive", "/ˈprɪmɪtɪv/", "khối hình cơ bản"],
+            ["Photoshop", "/ˈfoʊtəʊʃɒp/", "phần mềm chỉnh sửa ảnh Photoshop"],
+            ["Rational Rose", "/ˈræʃ(ə)n(ə)l roʊz/", "phần mềm hỗ trợ phân tích thiết kế hệ thống"],
+            ["Route planning software", "/ruːt ˈplænɪŋ ˈsɒf(t)wɛː/", "phần mềm chỉ đường"],
+            ["Satellite navigation", "/ˈsætəlaɪt ˌnævɪˈɡeɪʃ(ə)n/", "hệ thống định vị vệ tinh"],
+            ["simulation", "/ˌsɪmjʊˈleɪʃ(ə)n/", "sự mô phỏng"],
+            ["spreadsheet", "/ˈsprɛdʃiːt/", "bảng tính"],
+            ["video editing software", "/ˈvɪdɪəʊ ˈɛdɪtɪŋ ˈsɒf(t)wɛː/", "phần mềm chỉnh sửa video"],
+            ["Visual Studio", "/ˈvɪʒuəl ˈstjuː.dɪ.oʊ/", "phần mềm của Microsoft dùng để lập trình"],
+            ["Word processing software", "/wɜːd ˌprəʊ.ses.ɪŋ ˈsɒf(t)wɛː/", "phần mềm xử lý từ/ bộ xử lý từ"],
+            ["be supposed to", "/biː səˈpəʊzd tuː/", "giả định là, giả sử là"],
+            ["benefit (v)", "/ˈbenɪfɪt/", "được hưởng lợi từ"],
+            ["downsize", "/ˈdaʊnsaɪz/", "thu nhỏ lại"],
+            ["enhance (v)", "/ɪnˈhɑːns/", "nâng cao"],
+            ["keep track of", "/kiːp træk (ə)v/", "theo dõi"],
+            ["optimize", "/ˈɒptɪmaɪz/", "tối ưu hóa"],
+            ["own", "/əʊn/", "sở hữu, làm chủ"],
+            ["preserve (v)", "/prɪˈzɜːv/", "bảo tồn, giữ gìn"],
+            ["retouch", "/riːˈtʌtʃ/", "chỉnh sửa lại"],
+            ["simulate", "/ˈsɪmjuleɪt/", "minh họa, mô phỏng"]
+        ];
+
+        function generateQuestion() {
+            // Chọn ngẫu nhiên một từ từ danh sách
+            const randomIndex = Math.floor(Math.random() * vocabList.length);
+            const correctWord = vocabList[randomIndex];
+
+            // Tạo mảng chứa các đáp án nhiễu (không bao gồm đáp án đúng)
+            let wrongAnswers = vocabList
+                .filter((word, index) => index !== randomIndex) // Loại bỏ từ đã chọn
+                .map(word => word[2]) // Lấy nghĩa tiếng Việt
+                .sort(() => Math.random() - 0.5) // Xáo trộn mảng
+                .slice(0, 3); // Lấy 3 đáp án nhiễu
+
+            // Tạo mảng chứa tất cả các đáp án (đúng + nhiễu)
+            let answers = [...wrongAnswers, correctWord[2]];
+            // Xáo trộn vị trí các đáp án
+            answers.sort(() => Math.random() - 0.5);
+
+            // Tìm vị trí đáp án đúng trong mảng đã xáo trộn
+            const correctIndex = answers.indexOf(correctWord[2]);
+
+            return {
+                word: correctWord[0], // Từ tiếng Anh
+                pronunciation: correctWord[1], // Phát âm
+                answers: answers, // Mảng các đáp án
+                correctAnswer: correctIndex // Vị trí đáp án đúng (0-3)
+            };
+        }
+
+        function createQuiz() {
+            const question = generateQuestion();
+            document.getElementById('question-word').textContent = question.word;
+            document.getElementById('pronunciation').textContent = ` (${question.pronunciation})`;
+
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            question.answers.forEach((answer, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                optionDiv.innerHTML = `
+                    <div class="option-number">${index + 1}</div>
+                    <div class="option-text">${answer}</div>
+                `;
+
+                optionDiv.addEventListener('click', () => selectAnswer(optionDiv, index === question.correctAnswer));
+                optionsContainer.appendChild(optionDiv);
+            });
+        }
+
+        function selectAnswer(optionDiv, isCorrect) {
+            // Nếu đã chọn đúng trước đó thì không làm gì cả
+            if (document.querySelector('.correct')) {
+                return;
+            }
+
+            if (isCorrect) {
+                // Nếu chọn đúng
+                optionDiv.classList.add('correct');
+                // Chuyển sang câu hỏi mới sau 1 giây
+                setTimeout(createQuiz, 1000);
+            } else {
+                // Nếu chọn sai, chỉ thêm class incorrect cho lựa chọn hiện tại
+                // mà không xóa incorrect của các lựa chọn trước
+                optionDiv.classList.add('incorrect');
+            }
+        }
+
+        // Khởi tạo quiz khi trang web load
+        window.onload = createQuiz;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vocabulary Presentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .vocab-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .play-button {
+            background: #666;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .play-button:hover {
+            background: #444;
+        }
+
+        .word {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .pronunciation {
+            color: #666;
+            font-style: italic;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .meaning {
+            color: #2980b9;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/accounting_software.mp3').play()">▶</button>
+        <div class="word">accounting software</div>
+        <div class="pronunciation">/əˈkaʊntɪŋ ˈsɒf(t)wɛː/</div>
+        <img src="Accounting software.jpg" alt="accounting software" class="image">
+        <div class="meaning">phần mềm kế toán</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/adobe_reader.mp3').play()">▶</button>
+        <div class="word">Adobe Reader</div>
+        <div class="pronunciation">/əˈdoʊbi ˈriːdər/</div>
+        <img src="Adobe reader.jpg" alt="Adobe Reader" class="image">
+        <div class="meaning">phần mềm đọc file pdf</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/bioinformatics.mp3').play()">▶</button>
+        <div class="word">bioinformatics</div>
+        <div class="pronunciation">/ˌbaɪ.oʊˌɪnfərˈmætɪks/</div>
+        <img src="bioinformatics.jpg" alt="bioinformatics" class="image">
+        <div class="meaning">việc sử dụng tin học để phân tích dữ liệu sinh học</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/corel_draw.mp3').play()">▶</button>
+        <div class="word">Corel Draw</div>
+        <div class="pronunciation">/kəˈrɛl drɔː/</div>
+        <img src="images/image.png" alt="Corel Draw" class="image">
+        <div class="meaning">phần mềm biên tập đồ họa vector</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/cost_analysis.mp3').play()">▶</button>
+        <div class="word">Cost analysis</div>
+        <div class="pronunciation">/kɒst əˈnæləsɪs/</div>
+        <img src="images/image.png" alt="Cost analysis" class="image">
+        <div class="meaning">phân tích chi phí</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/data_management.mp3').play()">▶</button>
+        <div class="word">Data management</div>
+        <div class="pronunciation">/ˈdeɪtə ˈmænɪdʒmənt/</div>
+        <img src="images/image.png" alt="Data management" class="image">
+        <div class="meaning">việc quản lý dữ liệu</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/desktop_publishing.mp3').play()">▶</button>
+        <div class="word">Desktop publishing (DTP)</div>
+        <div class="pronunciation">/ˈdɛsktɒp ˈpʌblɪʃɪŋ/</div>
+        <img src="images/image.png" alt="Desktop publishing" class="image">
+        <div class="meaning">kỹ thuật chế bản điện tử</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/desktop_publishing_software.mp3').play()">▶</button>
+        <div class="word">Desktop publishing software</div>
+        <div class="pronunciation">/ˈdɛsktɒp ˈpʌblɪʃɪŋ ˈsɒf(t)wɛː/</div>
+        <img src="images/image.png" alt="Desktop publishing software" class="image">
+        <div class="meaning">phần mềm chế bản điện tử</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/digital_assistant.mp3').play()">▶</button>
+        <div class="word">Digital assistant</div>
+        <div class="pronunciation">/ˈdɪdʒɪtəl əˈsɪstənt/</div>
+        <img src="images/image.png" alt="Digital assistant" class="image">
+        <div class="meaning">thiết bị hỗ trợ kỹ thuật số</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/dream_weaver.mp3').play()">▶</button>
+        <div class="word">Dream Weaver</div>
+        <div class="pronunciation">/driːm ˈwiːvər/</div>
+        <img src="images/image.png" alt="Dream Weaver" class="image">
+        <div class="meaning">phần mềm soạn thảo, xây dựng trang web</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/editor.mp3').play()">▶</button>
+        <div class="word">editor</div>
+        <div class="pronunciation">/ˈɛdɪtər/</div>
+        <img src="images/image.png" alt="editor" class="image">
+        <div class="meaning">trình biên soạn</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/enterprise_software.mp3').play()">▶</button>
+        <div class="word">Enterprise software</div>
+        <div class="pronunciation">/ˈɛntərˌpraɪz ˈsɒf(t)wɛː/</div>
+        <img src="images/image.png" alt="Enterprise software" class="image">
+        <div class="meaning">phần mềm điều hành doanh nghiệp</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/graphics_program.mp3').play()">▶</button>
+        <div class="word">Graphics program</div>
+        <div class="pronunciation">/ˈɡræfɪks ˈproʊɡræm/</div>
+        <img src="images/image.png" alt="Graphics program" class="image">
+        <div class="meaning">phần mềm đồ họa, chương trình đồ họa</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/household_app.mp3').play()">▶</button>
+        <div class="word">household app</div>
+        <div class="pronunciation">/ˈhaʊshoʊld æp/</div>
+        <img src="images/image.png" alt="household app" class="image">
+        <div class="meaning">ứng dụng dành cho gia đình</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/image_editing_software.mp3').play()">▶</button>
+        <div class="word">image editing software</div>
+        <div class="pronunciation">/ˈɪmɪdʒ ˈɛdɪtɪŋ ˈsɒf(t)wɛː/</div>
+        <img src="images/image.png" alt="image editing software" class="image">
+        <div class="meaning">phần mềm chỉnh sửa ảnh</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/mobile_apps.mp3').play()">▶</button>
+        <div class="word">mobile apps</div>
+        <div class="pronunciation">/ˈmoʊbəl æps/</div>
+        <img src="images/image.png" alt="mobile apps" class="image">
+        <div class="meaning">ứng dụng di động</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/office_suite.mp3').play()">▶</button>
+        <div class="word">Office suite (Word, Excel, PPT)</div>
+        <div class="pronunciation">/ˈɒfɪs swiːt/</div>
+        <img src="images/image.png" alt="Office suite" class="image">
+        <div class="meaning">bộ ứng dụng văn phòng</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/payroll.mp3').play()">▶</button>
+        <div class="word">Payroll</div>
+        <div class="pronunciation">/ˈpeɪrɔːl/</div>
+        <img src="images/image.png" alt="Payroll" class="image">
+        <div class="meaning">bảng lương</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/primitive.mp3').play()">▶</button>
+        <div class="word">Primitive</div>
+        <div class="pronunciation">/ˈprɪmɪtɪv/</div>
+        <img src="images/image.png" alt="Primitive" class="image">
+        <div class="meaning">khối hình cơ bản</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/photoshop.mp3').play()">▶</button>
+        <div class="word">Photoshop</div>
+        <div class="pronunciation">/ˈfoʊtəʊʃɒp/</div>
+        <img src="images/image.png" alt="Photoshop" class="image">
+        <div class="meaning">phần mềm chỉnh sửa ảnh Photoshop</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/rational_rose.mp3').play()">▶</button>
+        <div class="word">Rational Rose</div>
+        <div class="pronunciation">/ˈræʃ(ə)n(ə)l roʊz/</div>
+        <img src="images/image.png" alt="Rational Rose" class="image">
+        <div class="meaning">phần mềm hỗ trợ phân tích thiết kế hệ thống</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/route_planning_software.mp3').play()">▶</button>
+        <div class="word">Route planning software</div>
+        <div class="pronunciation">/ruːt ˈplænɪŋ ˈsɒf(t)wɛː/</div>
+        <img src="images/image.png" alt="Route planning software" class="image">
+        <div class="meaning">phần mềm chỉ đường</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/satellite_navigation.mp3').play()">▶</button>
+        <div class="word">Satellite navigation</div>
+        <div class="pronunciation">/ˈsætəlaɪt ˌnævɪˈɡeɪʃ(ə)n/</div>
+        <img src="images/image.png" alt="Satellite navigation" class="image">
+        <div class="meaning">hệ thống định vị vệ tinh</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/simulation.mp3').play()">▶</button>
+        <div class="word">simulation</div>
+        <div class="pronunciation">/ˌsɪmjʊˈleɪʃ(ə)n/</div>
+        <img src="images/image.png" alt="simulation" class="image">
+        <div class="meaning">sự mô phỏng</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/spreadsheet.mp3').play()">▶</button>
+        <div class="word">spreadsheet</div>
+        <div class="pronunciation">/ˈsprɛdʃiːt/</div>
+        <img src="images/image.png" alt="spreadsheet" class="image">
+        <div class="meaning">bảng tính</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/video_editing_software.mp3').play()">▶</button>
+        <div class="word">video editing software</div>
+        <div class="pronunciation">/ˈvɪdɪəʊ ˈɛdɪtɪŋ ˈsɒf(t)wɛː/</div>
+        <img src="images/image.png" alt="video editing software" class="image">
+        <div class="meaning">phần mềm chỉnh sửa video</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/visual_studio.mp3').play()">▶</button>
+        <div class="word">Visual Studio</div>
+        <div class="pronunciation">/ˈvɪʒuəl ˈstjuː.dɪ.oʊ/</div>
+        <img src="images/image.png" alt="Visual Studio" class="image">
+        <div class="meaning">phần mềm của Microsoft dùng để lập trình</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/word_processing_software.mp3').play()">▶</button>
+        <div class="word">Word processing software</div>
+        <div class="pronunciation">/wɜːd ˌprəʊ.ses.ɪŋ ˈsɒf(t)wɛː/</div>
+        <img src="images/image.png" alt="Word processing software" class="image">
+        <div class="meaning">phần mềm xử lý từ/ bộ xử lý từ</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/be_supposed_to.mp3').play()">▶</button>
+        <div class="word">be supposed to</div>
+        <div class="pronunciation">/biː səˈpəʊzd tuː/</div>
+        <img src="images/image.png" alt="be supposed to" class="image">
+        <div class="meaning">giả định là, giả sử là</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/benefit.mp3').play()">▶</button>
+        <div class="word">benefit (v)</div>
+        <div class="pronunciation">/ˈbenɪfɪt/</div>
+        <img src="images/image.png" alt="benefit" class="image">
+        <div class="meaning">được hưởng lợi từ</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/downsize.mp3').play()">▶</button>
+        <div class="word">downsize</div>
+        <div class="pronunciation">/ˈdaʊnsaɪz/</div>
+        <img src="images/image.png" alt="downsize" class="image">
+        <div class="meaning">thu nhỏ lại</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/enhance.mp3').play()">▶</button>
+        <div class="word">enhance (v)</div>
+        <div class="pronunciation">/ɪnˈhɑːns/</div>
+        <img src="images/image.png" alt="enhance" class="image">
+        <div class="meaning">nâng cao</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/keep_track_of.mp3').play()">▶</button>
+        <div class="word">keep track of</div>
+        <div class="pronunciation">/kiːp træk (ə)v/</div>
+        <img src="images/image.png" alt="keep track of" class="image">
+        <div class="meaning">theo dõi</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/optimize.mp3').play()">▶</button>
+        <div class="word">optimize</div>
+        <div class="pronunciation">/ˈɒptɪmaɪz/</div>
+        <img src="images/image.png" alt="optimize" class="image">
+        <div class="meaning">tối ưu hóa</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/own.mp3').play()">▶</button>
+        <div class="word">own</div>
+        <div class="pronunciation">/əʊn/</div>
+        <img src="images/image.png" alt="own" class="image">
+        <div class="meaning">sở hữu, làm chủ</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/preserve.mp3').play()">▶</button>
+        <div class="word">preserve (v)</div>
+        <div class="pronunciation">/prɪˈzɜːv/</div>
+        <img src="images/image.png" alt="preserve" class="image">
+        <div class="meaning">bảo tồn, giữ gìn</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/retouch.mp3').play()">▶</button>
+        <div class="word">retouch</div>
+        <div class="pronunciation">/riːˈtʌtʃ/</div>
+        <img src="images/image.png" alt="retouch" class="image">
+        <div class="meaning">chỉnh sửa lại</div>
+    </div>
+
+    <div class="vocab-card">
+        <button class="play-button" onclick="new Audio('sounds/simulate.mp3').play()">▶</button>
+        <div class="word">simulate</div>
+        <div class="pronunciation">/ˈsɪmjuleɪt/</div>
+        <img src="images/image.png" alt="simulate" class="image">
+        <div class="meaning">minh họa, mô phỏng</div>
+    </div>
+</body>
+
+</html>

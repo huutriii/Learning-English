@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>English Learning Platform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            background-color: #f5f5f5;
+        }
+
+        .sidebar {
+            width: 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-right: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-content {
+            flex: 1;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            color: #333;
+            margin: 0;
+        }
+
+        .task-count {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .task-description {
+            color: #666;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .content-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .content-item:hover {
+            background-color: #f5f5f5;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            background-color: #4CAF50;
+            margin-right: 10px;
+            border-radius: 4px;
+        }
+
+        .item-title {
+            flex: 1;
+        }
+
+        .item-type {
+            color: #666;
+            font-style: italic;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Vocabulary</h2>
+                <span class="task-count">8 tasks</span>
+            </div>
+            <div class="task-description">📖 Read, listen and repeat.</div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Grammar</h2>
+                <span class="task-count">11 tasks</span>
+            </div>
+            <div class="task-description">📝 Subject pronouns and possessive adjectives.</div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Listening</h2>
+                <span class="task-count">6 tasks</span>
+            </div>
+            <div class="task-description">🎧 Listen and write down the capital letters you hear.</div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Reading</h2>
+                <span class="task-count">6 tasks</span>
+            </div>
+            <div class="task-description">📚 Read the passage and choose the correct answer.</div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Writing</h2>
+                <span class="task-count">6 tasks</span>
+            </div>
+            <div class="task-description">✍️ Reorder the words to make sentence.</div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Speaking</h2>
+                <span class="task-count">2 tasks</span>
+            </div>
+            <div class="task-description">🗣️ Speaking</div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Pronunciation</h2>
+                <span class="task-count">2 tasks</span>
+            </div>
+            <div class="task-description">🔊 Read, listen and repeat.</div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <a href="presentation1.html" class="content-item">
+            <div class="icon"></div>
+            <div class="item-title">Presentation 1: Application software</div>
+            <div class="item-type">vocabulary</div>
+        </a>
+
+        <a href="#" class="content-item">
+            <div class="icon"></div>
+            <div class="item-title">Presentation 2: Words and phrases</div>
+            <div class="item-type">vocabulary</div>
+        </a>
+
+        <a href="#" class="content-item">
+            <div class="icon"></div>
+            <div class="item-title">Task 1: Listen then choose the answer</div>
+            <div class="item-type">mcq</div>
+        </a>
+
+        <a href="#" class="content-item">
+            <div class="icon"></div>
+            <div class="item-title">Task 2: Matching</div>
+            <div class="item-type">question</div>
+        </a>
+
+        <a href="quizz1.html" class="content-item">
+            <div class="icon"></div>
+            <div class="item-title">Task 3: Look at the words and choose the correct meaning</div>
+            <div class="item-type">mcq</div>
+        </a>
+
+        <a href="#" class="content-item">
+            <div class="icon"></div>
+            <div class="item-title">Task 4: Look at the transciptions then write down the word</div>
+            <div class="item-type">question</div>
+        </a>
+
+        <a href="#" class="content-item">
+            <div class="icon"></div>
+            <div class="item-title">Task 5: Reorder letters to make meaningful words</div>
+            <div class="item-type">question</div>
+        </a>
+
+        <a href="#" class="content-item">
+            <div class="icon"></div>
+            <div class="item-title">Section test: Complete the sentences with a suitable word beginning with a given
+                letter</div>
+            <div class="item-type">question</div>
+        </a>
+
+        <a href="show.html" class="content-item">
+            <div class="icon"></div>
+            <div class="item-title">Vocabulary Review: All vocabulary from the lesson</div>
+            <div class="item-type">vocabulary list</div>
+        </a>
+    </div>
+</body>
+
+</html>
