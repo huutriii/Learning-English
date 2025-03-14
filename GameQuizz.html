@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Game Quizz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header styles */
+        .header {
+            padding: 10px 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: 1px solid #000000;
+            border-radius: 50px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            background-color: #5e8bd7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin: 0;
+            border: 1px solid #ddd;
+        }
+
+        .search-icon img {
+            width: 20px;
+            height: 20px;
+            opacity: 0.6;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            margin-left: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+        }
+
+        /* Main content styles */
+        .main-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        /* Left sidebar */
+        .games-section {
+            width: 800px;
+            padding: 20px;
+            margin: 30px auto 0;
+        }
+
+        .games-header {
+            background-color: #fff;
+            border: 1px solid #ffd700;
+            border-radius: 4px;
+            padding: 5px 10px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .game-card {
+            width: 100%;
+            text-align: center;
+        }
+
+        .game-image {
+            width: 100%;
+            height: 250px;
+            margin-bottom: 15px;
+        }
+
+        .game-card h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .play-more-games {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 15px;
+            background-color: #e9f0ff;
+            color: #0055ff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .play-more-games:hover {
+            background-color: #d1e1ff;
+        }
+
+        /* Right content */
+        .content-section {
+            width: 100%;
+            padding: 20px;
+        }
+
+        .word-of-day {
+            border: 2px solid #0066ff;
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 40px;
+            width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .word-header {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .date {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+
+        .word {
+            font-size: 52px;
+            margin-bottom: 15px;
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sound-icon {
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            padding: 0;
+        }
+
+        .pronunciation {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pronunciation a {
+            color: #0066ff;
+            text-decoration: none;
+        }
+
+        .email-text {
+            color: #666;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .video-section {
+            margin-top: 30px;
+        }
+
+        .video-container {
+            width: 100%;
+            height: 400px;
+            background-color: #000;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .video-thumbnails {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+        }
+
+        .thumbnail {
+            width: 150px;
+            height: 84px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Start typing any word or phrase">
+            <div class="search-icon">
+                <img src="Image/search.png" alt="search">
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="#">Games</a>
+            <a href="#">Featured</a>
+            <a href="#">Pop culture</a>
+            <a href="#">Writing tips</a>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-container">
+        <!-- Right content section -->
+        <div class="content-section">
+            <div class="word-of-day">
+                <div class="word-header">WORD OF THE DAY</div>
+                <div class="date">MARCH 14, 2025</div>
+                <h2 class="word">quiche
+                    <img src="Image/play_sound.png" alt="pronunciation" class="speaker-icon">
+                </h2>
+                <div class="pronunciation">[keesh] <a href="#">Meaning and examples</a></div>
+                <div class="email-text">Start each day with the Word of the Day in your inbox!</div>
+            </div>
+
+            <!-- Games section moved here -->
+            <div class="games-section">
+                <div class="games-header">Games</div>
+                <p>Calling all cruciverbalists! Sharpen your mind with crosswords and word games, or take a brain break
+                    with
+                    your favorite classic games.</p>
+
+                <div class="games-grid">
+                    <a href="#" class="game-card">
+                        <div class="game-image">
+                            <img src="Image/GameQuizz/crossword.png" alt="Daily Crossword">
+                        </div>
+                        <h3>Daily Crossword</h3>
+                    </a>
+
+                    <a href="#" class="game-card">
+                        <div class="game-image">
+                            <img src="Image/GameQuizz/hurdle.png" alt="Hurdle">
+                        </div>
+                        <h3>Hurdle</h3>
+                    </a>
+
+                    <a href="#" class="game-card">
+                        <div class="game-image">
+                            <img src="Image/GameQuizz/word_puzzle.png" alt="Word Puzzle">
+                        </div>
+                        <h3>Word Puzzle</h3>
+                    </a>
+
+                    <a href="#" class="game-card">
+                        <div class="game-image">
+                            <img src="Image/GameQuizz/word_wipe.png" alt="Word Wipe">
+                        </div>
+                        <h3>Word Wipe</h3>
+                    </a>
+
+                    <a href="#" class="play-more-games">Play 80+ games</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .speaker-icon {
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        /* Cập nhật style cho games section */
+        .games-section {
+            width: 800px;
+            padding: 20px;
+            margin: 30px auto 0;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .game-image {
+            width: 100%;
+            height: 250px;
+            margin-bottom: 15px;
+        }
+
+        .game-card h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        /* Điều chỉnh main container */
+        .main-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .content-section {
+            width: 100%;
+        }
+
+        /* Tăng kích thước word of day */
+        .word-of-day {
+            border: 2px solid #0066ff;
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 40px;
+            width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .word {
+            font-size: 52px;
+            margin-bottom: 15px;
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pronunciation {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        /* Tăng kích thước nút Play 80+ games */
+        .play-more-games {
+            padding: 15px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+    </style>
+</body>
+
+</html>

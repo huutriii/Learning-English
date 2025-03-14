@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Listening Task 1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .task-container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .audio-container {
+            background: #e74c3c;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        .play-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0 10px;
+        }
+
+        .time-slider {
+            flex-grow: 1;
+            margin: 0 15px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .mic-icon {
+            font-size: 20px;
+            margin-left: 10px;
+        }
+
+        .question {
+            margin: 30px 0;
+        }
+
+        .question-number {
+            color: #3498db;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            color: #2c3e50;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        .option:hover {
+            background-color: #f5f5f5;
+        }
+
+        .option input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .option label {
+            color: #34495e;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .selected {
+            background-color: #e3f2fd;
+            border-color: #2196f3;
+        }
+
+        .correct {
+            background-color: #c8e6c9;
+            border-color: #4caf50;
+        }
+
+        .incorrect {
+            background-color: #ffebee;
+            border-color: #f44336;
+        }
+
+        .progress-bar {
+            flex-grow: 1;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            margin: 0 15px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress {
+            width: 0;
+            height: 100%;
+            background: white;
+            position: absolute;
+        }
+
+        #timeDisplay {
+            color: white;
+            font-size: 14px;
+            min-width: 85px;
+        }
+
+        /* Thêm style cho đáp án đúng/sai */
+        .option.correct {
+            background-color: #c8e6c9;
+            border-color: #4caf50;
+        }
+
+        .option.incorrect {
+            background-color: #ffebee;
+            border-color: #f44336;
+        }
+
+        .option.disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .feedback.correct {
+            background-color: #c8e6c9;
+            color: #2e7d32;
+        }
+
+        .feedback.incorrect {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+
+        .submit-btn {
+            background-color: #2196f3;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        .submit-btn:hover {
+            background-color: #1976d2;
+        }
+
+        .submit-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Thêm style mới */
+        .option.wrong-selected {
+            background-color: #ffebee;
+            border-color: #f44336;
+        }
+
+        .option.correct {
+            background-color: #c8e6c9;
+            border-color: #4caf50;
+            pointer-events: none;
+            /* Không cho click vào đáp án đúng nữa */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="task-container">
+        <h1 class="title">Listen to a short talk and choose the best answer for each question.</h1>
+
+        <div class="audio-container">
+            <audio id="audioPlayer" src="sounds/sound.mp3">
+                Your browser does not support the audio element.
+            </audio>
+            <button class="play-button" onclick="togglePlay()">▶</button>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+            <span id="timeDisplay">00:02/01:16</span>
+            <span class="mic-icon">🎤</span>
+        </div>
+
+        <div class="question" data-correct="q1_1">
+            <div class="question-number">QUESTION 1:</div>
+            <div class="question-text">Photoshop is widely used to ___________</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 0, 0)">
+                    <input type="radio" id="q1_1" name="q1">
+                    <label for="q1_1">Edit photos</label>
+                </div>
+                <div class="option" onclick="checkAnswer(this, 0, 1)">
+                    <input type="radio" id="q1_2" name="q1">
+                    <label for="q1_2">Scan photos</label>
+                </div>
+                <div class="option" onclick="checkAnswer(this, 0, 2)">
+                    <input type="radio" id="q1_3" name="q1">
+                    <label for="q1_3">Take photos</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="question" data-correct="q2_3">
+            <div class="question-number">QUESTION 2:</div>
+            <div class="question-text">Photoshop was developed by ___________ in 1987.</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 1, 0)">
+                    <input type="radio" id="q2_1" name="q2">
+                    <label for="q2_1">Thomas</label>
+                </div>
+                <div class="option" onclick="checkAnswer(this, 1, 1)">
+                    <input type="radio" id="q2_2" name="q2">
+                    <label for="q2_2">Adobe Systems</label>
+                </div>
+                <div class="option" onclick="checkAnswer(this, 1, 2)">
+                    <input type="radio" id="q2_3" name="q2">
+                    <label for="q2_3">Thomas and John Knoll</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="question" data-correct="q3_2">
+            <div class="question-number">QUESTION 3:</div>
+            <div class="question-text">Which software is used for video editing?</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 2, 0)">
+                    <input type="radio" id="q3_1" name="q3">
+                    <label for="q3_1">Adobe Photoshop</label>
+                </div>
+                <div class="option" onclick="checkAnswer(this, 2, 1)">
+                    <input type="radio" id="q3_2" name="q3">
+                    <label for="q3_2">Adobe Premiere</label>
+                </div>
+                <div class="option" onclick="checkAnswer(this, 2, 2)">
+                    <input type="radio" id="q3_3" name="q3">
+                    <label for="q3_3">Adobe Illustrator</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="question" data-correct="q4_2">
+            <div class="question-number">QUESTION 4:</div>
+            <div class="question-text">What is the main purpose of Adobe Illustrator?</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 3, 0)">
+                    <input type="radio" id="q4_1" name="q4">
+                    <label for="q4_1">Edit photos</label>
+                </div>
+                <div class="option" onclick="checkAnswer(this, 3, 1)">
+                    <input type="radio" id="q4_2" name="q4">
+                    <label for="q4_2">Create vector graphics</label>
+                </div>
+                <div class="option" onclick="checkAnswer(this, 3, 2)">
+                    <input type="radio" id="q4_3" name="q4">
+                    <label for="q4_3">Edit videos</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const audioPlayer = document.getElementById('audioPlayer');
+        const playButton = document.querySelector('.play-button');
+        const progress = document.querySelector('.progress');
+        const progressBar = document.querySelector('.progress-bar');
+        const timeDisplay = document.getElementById('timeDisplay');
+
+        // Mảng chứa index của đáp án đúng cho mỗi câu
+        const correctAnswers = [0, 2, 1, 1, 0]; // 5 phần tử cho 5 câu hỏi
+
+        function togglePlay() {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                playButton.textContent = '⏸';
+            } else {
+                audioPlayer.pause();
+                playButton.textContent = '▶';
+            }
+        }
+
+        // Cập nhật thanh progress và thời gian
+        audioPlayer.addEventListener('timeupdate', () => {
+            const percent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+            progress.style.width = percent + '%';
+
+            // Format thời gian
+            const currentMinutes = Math.floor(audioPlayer.currentTime / 60);
+            const currentSeconds = Math.floor(audioPlayer.currentTime % 60);
+            const durationMinutes = Math.floor(audioPlayer.duration / 60);
+            const durationSeconds = Math.floor(audioPlayer.duration % 60);
+
+            timeDisplay.textContent = `${String(currentMinutes).padStart(2, '0')}:${String(currentSeconds).padStart(2, '0')}/${String(durationMinutes).padStart(2, '0')}:${String(durationSeconds).padStart(2, '0')}`;
+        });
+
+        // Click vào thanh progress để tua
+        progressBar.addEventListener('click', (e) => {
+            const percent = (e.offsetX / progressBar.offsetWidth);
+            audioPlayer.currentTime = percent * audioPlayer.duration;
+        });
+
+        // Reset button khi audio kết thúc
+        audioPlayer.addEventListener('ended', () => {
+            playButton.textContent = '▶';
+        });
+
+        // Xử lý chọn đáp án
+        function checkAnswer(selectedOption, questionIndex, optionIndex) {
+            const questionDiv = selectedOption.closest('.question');
+            const radio = selectedOption.querySelector('input[type="radio"]');
+            const options = questionDiv.querySelectorAll('.option');
+
+            // Chọn radio button
+            radio.checked = true;
+
+            // Kiểm tra đáp án
+            if (optionIndex === correctAnswers[questionIndex]) {
+                // Đáp án đúng
+                selectedOption.classList.add('correct');
+
+                // Disable tất cả các option trong câu hỏi này
+                options.forEach(opt => {
+                    opt.classList.add('disabled');
+                });
+            } else {
+                // Đáp án sai
+                selectedOption.classList.add('wrong-selected');
+
+                // Bỏ check radio sau 500ms
+                setTimeout(() => {
+                    radio.checked = false;
+                }, 500);
+            }
+        }
+    </script>
+</body>
+
+</html>

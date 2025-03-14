@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vocabulary Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .test-container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .question-text {
+            color: #2c3e50;
+            font-size: 18px;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .answer-input {
+            width: 200px;
+            padding: 8px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .result {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .result.correct {
+            background-color: #c8e6c9;
+            color: #2e7d32;
+        }
+
+        .result.incorrect {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+
+        .submit-btn {
+            background-color: #2196f3;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            background-color: #1976d2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test-container">
+        <h1 class="title">Complete the sentences with a suitable word beginning with a given letter</h1>
+
+        <div id="questions-container">
+            <!-- Questions will be generated here -->
+        </div>
+
+        <button class="submit-btn" onclick="checkAllAnswers()">Submit Answers</button>
+    </div>
+
+    <script>
+        // Danh sách câu hỏi và đáp án
+        const questions = [
+            {
+                text: "A_____ R_____ is the most reliable, free global standard software to view, edit, sign, and annotate PDF documents.",
+                answer: "Adobe Reader"
+            },
+            {
+                text: "C____ D___ has numerous tools you can use to create an effective and professional logo to suit your business needs.",
+                answer: "Corel Draw"
+            },
+            {
+                text: "Our company has really good d___ m________ systems in place to make sure that everyone can access to the information.",
+                answer: "data management"
+            },
+            {
+                text: "D______ a_______ is used to assist a user by answering questions and performing basic tasks.",
+                answer: "Digital assistant"
+            },
+            {
+                text: "D____ W_____ allows users to create, code, and manage websites that look amazing on any screen size.",
+                answer: "Dream Weaver"
+            },
+            {
+                text: "Câu hỏi với chỗ trống (_____)",
+                answer: "Đáp án đúng"
+            }
+        ];
+
+        // Tạo HTML cho các câu hỏi
+        function createQuestions() {
+            const container = document.getElementById('questions-container');
+
+            questions.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+
+                questionDiv.innerHTML = `
+                    <div class="question-text">${index + 1}. ${question.text}</div>
+                    <input type="text" class="answer-input" id="answer${index}" placeholder="Type your answer...">
+                    <div class="result" id="result${index}"></div>
+                `;
+
+                container.appendChild(questionDiv);
+            });
+        }
+
+        function checkAllAnswers() {
+            questions.forEach((question, index) => {
+                const input = document.getElementById(`answer${index}`);
+                const result = document.getElementById(`result${index}`);
+                const userAnswer = input.value.trim().toLowerCase();
+                const correctAnswer = question.answer.toLowerCase();
+
+                result.style.display = 'block';
+
+                if (userAnswer === correctAnswer) {
+                    result.textContent = `Correct! The answer is "${question.answer}"`;
+                    result.className = 'result correct';
+                    input.disabled = true;
+                } else {
+                    result.textContent = `Incorrect. The correct answer is "${question.answer}"`;
+                    result.className = 'result incorrect';
+                }
+            });
+        }
+
+        // Khởi tạo câu hỏi khi trang load
+        window.onload = createQuestions;
+    </script>
+</body>
+
+</html>
